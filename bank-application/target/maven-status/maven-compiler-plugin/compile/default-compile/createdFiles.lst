@@ -1,6 +1,6 @@
-bankAccountApp/ACHServiceImpl.class
-bankAccountApp/Bank.class
-bankAccountApp/BankAccount.class
-bankAccountApp/Person.class
-bankAccountApp/ACHService.class
-bankAccountApp/BankAccountApp.class
+com/imt/mines/BankAccountApp.class
+com/imt/mines/ACHServiceImpl.class
+com/imt/mines/Bank.class
+com/imt/mines/BankAccount.class
+com/imt/mines/ACHService.class
+com/imt/mines/Person.class
