@@ -17,7 +17,7 @@ class BankAccountTest {
     }
 
     @Test
-    void depositMoney_positiveAmount_happyPath() {
+    void depositMoneyPositiveAmountHappyPath() {
         account.depositMoney(100);
 
         assertEquals(400, account.getBalance(),
@@ -25,7 +25,7 @@ class BankAccountTest {
     }
 
     @Test
-    void depositMoney_negativeAmount_edgeCase() {
+    void depositMoneyNegativeAmountEdgeCase() {
         account.depositMoney(-50);
 
         assertEquals(300, account.getBalance(),
@@ -33,7 +33,7 @@ class BankAccountTest {
     }
 
     @Test
-    void depositMoney_zeroAmount_edgeCase() {
+    void depositMoneyZeroAmountEdgeCase() {
         account.depositMoney(0);
 
         assertEquals(300, account.getBalance(),
@@ -41,7 +41,7 @@ class BankAccountTest {
     }
 
     @Test
-    void withdrawMoney_validAmount_happyPath() {
+    void withdrawMoneyValidAmountHappyPath() {
         boolean result = account.withdrawMoney(100);
 
         assertTrue(result, "Le retrait doit réussir");
@@ -50,7 +50,7 @@ class BankAccountTest {
     }
 
     @Test
-    void withdrawMoney_moreThanBalance_edgeCase() {
+    void withdrawMoneyMoreThanBalanceEdgeCase() {
         boolean result = account.withdrawMoney(400);
 
         assertFalse(result, "Le retrait ne doit pas être autorisé");
@@ -59,7 +59,7 @@ class BankAccountTest {
     }
 
     @Test
-    void withdrawMoney_negativeAmount_edgeCase() {
+    void withdrawMoneyNegativeAmountEdgeCase() {
         boolean result = account.withdrawMoney(-20);
 
         assertFalse(result, "Un retrait négatif doit être refusé");
@@ -68,18 +68,59 @@ class BankAccountTest {
     }
 
     @Test
-    void withdrawMoney_equalToWithdrawLimit_edgeCase() {
+    void withdrawMoneyEqualToWithdrawLimitEdgeCase() {
         boolean result = account.withdrawMoney(500);
 
         assertFalse(result, "Un retrait égal à la limite doit être refusé");
     }
 
     @Test
-    void withdrawMoney_exceedsCumulativeWithdrawLimit_edgeCase() {
+    void withdrawMoneyExceedsCumulativeWithdrawLimitEdgeCase() {
         boolean first = account.withdrawMoney(300);
         boolean second = account.withdrawMoney(250);
 
         assertTrue(first, "Premier retrait valide");
         assertFalse(second, "Le second retrait dépasse la limite cumulée");
     }
+
+    @Test
+    void testToString() throws Exception {
+        Person p = new Person("John\nM\n25\n180\n75\nBrown\nBlue\njohn@mail.com");
+        BankAccount account = new BankAccount(1000, 500, "2024-01-01", p);
+        account.setAccountNumber(42);
+
+        String result = account.toString();
+
+        assertTrue(result.contains("42"));
+        assertTrue(result.contains("1000"));
+        assertTrue(result.contains("2024-01-01"));
+        assertTrue(result.contains("500"));
+        assertTrue(result.contains("John"));
+    }
+
+    @Test
+    void testConvertToText() throws Exception {
+        Person p = new Person("Alice\nF\n30\n165\n60\nBlond\nGreen\nalice@mail.com");
+        BankAccount account = new BankAccount(200, 300, "2023-12-31", p);
+        account.setAccountNumber(7);
+
+        String result = account.convertToText(account);
+
+        assertNotNull(result);
+        assertTrue(result.contains("7"));
+        assertTrue(result.contains("200"));
+        assertTrue(result.contains("300"));
+        assertTrue(result.contains("2023-12-31"));
+        assertTrue(result.contains("Alice"));
+    }
+
+    @Test
+    void testLoadFromTextWithInvalidFile() {
+        BankAccount account = new BankAccount();
+
+        int result = account.loadFromText("non_existing_file.txt");
+
+        assertEquals(0, result);
+    }
+
 }

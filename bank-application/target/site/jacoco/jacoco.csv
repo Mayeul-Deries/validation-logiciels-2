@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+bank-application,com.imt.mines,BankAccountApp,431,0,74,0,134,0,39,0,2,0
+bank-application,com.imt.mines,Person,144,110,18,4,50,30,21,13,11,12
+bank-application,com.imt.mines,BankAccount,156,202,8,12,46,57,12,19,6,15
+bank-application,com.imt.mines,Bank,312,17,32,0,78,6,29,1,13,1
+bank-application,com.imt.mines,ACHServiceImpl,7,0,0,0,3,0,3,0,3,0
